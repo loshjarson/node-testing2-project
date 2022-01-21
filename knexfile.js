@@ -1,28 +1,24 @@
-// DO NOT CHANGE THIS FILE
-const sharedConfig = {
+const common = {
   client: 'sqlite3',
   useNullAsDefault: true,
-  migrations: {
-    directory: './data/migrations',
-  },
-  seeds: {
-    directory: './data/seeds',
-  },
-  // this enables foreign keys in SQLite
-  pool: {
-    afterCreate: (conn, done) => {
-      conn.run('PRAGMA foreign_keys = ON', done)
-    },
-  },
+  migrations: { directory: './data/migrations' },
+  seeds: { directory: './data/seeds' },
 }
 
 module.exports = {
   development: {
-    ...sharedConfig,
-    connection: { filename: './data/schemes.db3' },
+    ...common,
+    connection: {
+      filename: './data/hobbits.db3',
+    },
   },
   testing: {
-    ...sharedConfig,
-    connection: { filename: './data/testing.db3' },
+    ...common,
+    connection: {
+      filename: './data/test.db3',
+    },
   },
-}
+  production: {
+
+  },
+};
