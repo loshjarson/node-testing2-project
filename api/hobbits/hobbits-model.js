@@ -28,6 +28,6 @@ async function update(id, changes) {
 
 async function remove(id) {
   const deleted = await getById(id)
-  await db("accounts").where("id",id).delete()
+  await db("hobbits").where("id",id).delete()
   return deleted
 }

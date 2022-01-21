@@ -20,8 +20,8 @@ server.get("/hobbits", (req, res) => {
     });
 });
 
-server.get("/hobbits/id", (req, res) => {
-  Hobbits.getById(res.body.id)
+server.get("/hobbits/:id", (req, res) => {
+  Hobbits.getById(req.params.id)
     .then(hobbit => {
       res.status(200).json(hobbit)
     })
@@ -41,7 +41,7 @@ server.post("/hobbits", (req, res) => {
 });
 
 server.delete("/hobbits/:id", (req, res) => {
-  Hobbits.remove(req.params.id)
+  Hobbits.remove(parseInt(req.params.id))
     .then(hobbit => {
       res.status(204).json(hobbit)
     })
@@ -51,7 +51,7 @@ server.delete("/hobbits/:id", (req, res) => {
 });
 
 server.put("/hobbits/:id", (req, res) => {
-  Hobbits.insert(req.body)
+  Hobbits.update(req.params.id, req.body)
     .then(hobbit => {
       res.status(201).json(hobbit)
     })
